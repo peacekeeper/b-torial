@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+<html>
+
+<head>
+
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>b-torial</title>
+	<link rel="stylesheet" target="_blank" href="style.css" TYPE="text/css" MEDIA="screen">
+	<script type="text/javascript" src="jquery-2.0.3.min.js"></script>
+	<script type="text/javascript" src="lodash.compat.min.js"></script>
+	<style type="text/css">
+		p { font-weight: bold; }
+	</style>
+
+	<script type="text/javascript">
+
+		var path = 'b-torial-data/';
+
+		function load() {
+
+			$.ajax({url:path + 'title', success: function(result) {
+				$('#appname').html(result);
+			}});
+
+			$.ajax({url:path + 'header.html', success: function(result) {
+				$('#tutorialsheader').html(result);
+			}});
+
+			$.ajax({url:path + 'footer.html', success: function(result) {
+				$('#tutorialsfooter').html(result);
+			}});
+
+			$.ajax({url:path + 'copyright.html', success: function(result) {
+				$('#tutorialscopyright').html(result);
+			}});
+
+			$.ajax({url:path + 'data.json', success: function(result) {
+				var h = "";
+				for (var i in result.tutorials) {
+					if (typeof result.tutorials[i].pages === 'undefined')
+						h += "<p>Tutorial " + (parseInt(i)+1) + ": " + result.tutorials[i].title + "</p>";
+					else
+						h += "<p><a href=\"tutorial.html?" + (parseInt(i)+1) + "|" + result.tutorials[i].pages + "\">Tutorial " + (parseInt(i)+1) + ": " + result.tutorials[i].title + "</a></p>";
+				}
+				$('#tutorials').html(h);
+			}});
+		}
+
+		$(document).ready(function() {
+
+			load();
+		});
+
+	</script>
+
+</head>
+
+<body>
+
+	<div id="app">
+
+		<table>
+		<tr>
+		<td>
+		<img id="applogo" src="b-torial-data/images/logo.png">
+		</td><td>
+		<span id="appname"></span>
+		</td>
+		</tr>
+		</table>
+
+	</div>
+
+	<div id="main">
+
+		<table width="100%">
+		<tr>
+		<td>
+
+			<div id="txt">
+
+				<div id="tutorialsheader"></div>
+
+				<div id="tutorials"></div>
+
+				<div id="tutorialsfooter"></div>
+
+			</div>
+
+		</td>
+		</tr>
+		</table>
+
+	</div>
+
+	<div class="copyright" id="tutorialscopyright">
+	</div>
+
+	<div class="copyright">
+		<a href="https://github.com/peacekeeper/b-torial">b-torial engine for lightweight tutorials</a> on Github.
+	</div>
+
+</body>
+
+</html>
