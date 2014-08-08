@@ -1,7 +1,7 @@
 b-torial
 ========
 
-Simple HTML/CSS/JavaScript framework for web-based tutorials
+Simple HTML/CSS/JavaScript engine for web-based tutorials
 
 Content is expected in a b-torial-data/ subdirectory.
 
