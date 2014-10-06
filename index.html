@@ -21,6 +21,7 @@
 
 			$.ajax({url:path + 'title', success: function(result) {
 				$('#appname').html(result);
+				document.title = result;
 			}});
 
 			$.ajax({url:path + 'header.html', success: function(result) {
